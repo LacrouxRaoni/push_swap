@@ -1,0 +1,5 @@
+push_swap
+*.o
+objects/
+push_swap_visualizer/
+.vscode/
