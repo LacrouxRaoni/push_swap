@@ -6,49 +6,102 @@
 /*   By: rruiz-la <rruiz-la@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 22:34:52 by rruiz-la          #+#    #+#             */
-/*   Updated: 2022/02/08 18:28:50 by rruiz-la         ###   ########.fr       */
+/*   Updated: 2022/02/15 00:17:40 by rruiz-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static	int	verify_list(t_push_swap *ps)
+static void sort_stack_max_100(t_push_swap * ps)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	while ( i < ps->top - 1)
+	
+	while(ps->len_a > 0)
+		pb_push_b(ps);
+	while (1)
 	{
-		j = i + 1;
-		while (j < ps->top)
+		find_max_min_stack_b(ps);
+		while (1)
 		{
-			if (ps->stack_a[i] > ps->stack_a[j])
-				return (0);
-			j++;
+			if (ps->stack_b[0] == ps->max)
+			{
+				pa_push_a(ps);
+				break ;
+			}
+			else
+				rb_rotate_b(ps);
 		}
-		i++;
+		while (1)
+		{
+			if (ps->stack_b[0] == ps->min)
+			{
+				pa_push_a(ps);
+				ra_rotate_a(ps);
+				break ;
+			}
+			else
+				rb_rotate_b(ps);
+		}
+		if (ps->len_b == 0)
+			break ;
 	}
-	return (1);
+	while (is_stack_sorted(ps) == 0)
+		ra_rotate_a(ps);
 }
 
 static int	init_game(t_push_swap *ps)
 {
-	
-	if (verify_list(ps) == 1)
-		return (1);
+	if (is_stack_sorted(ps) == 0)
+	{
+		if (ps->top < 3)
+			sa_swap_a(ps);
+		else if (ps->top < 4)
+			sort_stack_min_3(ps);
+		else if (ps->top > 3 && ps->top < 6)
+			sort_stack_min_5(ps);
+		else 
+			sort_stack_max_100(ps);
+		if (is_stack_sorted(ps) == 1)
+		{
+			printf ("%d\n", ps->stack_a[0]);
+			printf ("%d\n", ps->stack_a[1]);
+			printf ("%d\n", ps->stack_a[2]);
+			printf ("%d\n", ps->stack_a[3]);
+			printf ("%d\n", ps->stack_a[4]);
+			printf ("%d\n", ps->stack_a[5]);
+		}
+	}
+	/*int i;
+	int j;
 
-	sa_swap_a(ps);
-	sb_swap_b(ps);
-	ss_sa_n_sb(ps);
-	pa_push_a(ps);
-	pb_push_b(ps);
-	ra_rotate_a(ps);
-	rb_rotate_b(ps);
-	rr_ra_rb(ps);
-	rra_rev_a(ps);
-	rrb_rev_b(ps);
-	rrr_a_b (ps);
+	i = 0;
+	while (is_stack_sorted(ps) == 0)
+	{
+		if (ps->stack_a[0] < ps->stack_a[1])
+		{
+			j = 1;
+			while (j < ps->len_a)
+			{
+				if (ps->stack_a[0] > ps->stack_a[j])	
+				{		
+					if (j < ps->top / 2)
+						ra_rotate_a(ps);					
+					else
+						rra_rev_a(ps);
+				}
+				j++;
+			}
+			pb_push_b(ps);
+		}
+		else
+			sa_swap_a(ps);
+		i++;
+		if (ps->len_a == 1)
+			while (i > 0)
+			{
+				pa_push_a(ps);
+				i--;
+			}
+	}*/
 	return (0);
 }
 

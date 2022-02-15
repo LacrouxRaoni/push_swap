@@ -3,3 +3,4 @@ push_swap
 objects/
 push_swap_visualizer/
 .vscode/
+pyviz.py

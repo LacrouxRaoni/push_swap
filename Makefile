@@ -18,6 +18,9 @@ SRC_FILES	=	push_swap.c \
 				push_move.c \
 				rr_mov.c \
 				rr_rev_mov.c \
+				sorted_stack_checker.c \
+				max_min_num.c \
+				sort_min_5.c \
 				free.c
 
 SRC	=	$(addprefix $(SRC_DIR)/, $(SRC_FILES))
@@ -53,7 +56,7 @@ re: fclean all
 
 valgrind:	$(NAME)
 		make
-		valgrind -s --leak-check=full --show-leak-kinds=all ./push_swap 10 13 44 32
+		valgrind -s --leak-check=full --show-leak-kinds=all ./push_swap -2 42 24 -42 50 5
 
 
 .PHONY:	all clean fclean re

@@ -6,7 +6,7 @@
 /*   By: rruiz-la <rruiz-la@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 13:40:25 by rruiz-la          #+#    #+#             */
-/*   Updated: 2022/02/07 22:18:45 by rruiz-la         ###   ########.fr       */
+/*   Updated: 2022/02/12 14:32:57 by rruiz-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ int	check_rep_num_argv(char **argv, int len_argv, t_push_swap *ps)
 	i = 0;
 	j = -1;
 	while (argv[++i] != NULL)
+	{
 		ps->stack_a[++j] = ft_atoi(argv[i]);
+	}
 	i = 0;
 	while (i < len_argv - 1)
 	{
