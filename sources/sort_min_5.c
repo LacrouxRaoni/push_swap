@@ -6,7 +6,7 @@
 /*   By: rruiz-la <rruiz-la@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 23:09:48 by rruiz-la          #+#    #+#             */
-/*   Updated: 2022/02/14 23:18:15 by rruiz-la         ###   ########.fr       */
+/*   Updated: 2022/02/18 23:02:59 by rruiz-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	validate_pb(t_push_swap *ps, int i)
 	{
 		if (ps->top < 5)
 		{
-			if (ps->stack_a[0] == ps->min)
+			if (ps->stack_a[0] == ps->min_a)
 			{
 				pb_push_b(ps);
 				return (0);
@@ -57,7 +57,7 @@ static int	validate_pb(t_push_swap *ps, int i)
 		}
 		else
 		{
-			if (ps->stack_a[0] == ps->max || ps->stack_a[0] == ps->min)
+			if (ps->stack_a[0] == ps->max_a || ps->stack_a[0] == ps->min_a)
 			{	
 				pb_push_b(ps);
 				if (ps->len_b == 2)

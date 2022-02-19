@@ -6,7 +6,7 @@
 /*   By: rruiz-la <rruiz-la@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 22:34:56 by rruiz-la          #+#    #+#             */
-/*   Updated: 2022/02/14 23:32:28 by rruiz-la         ###   ########.fr       */
+/*   Updated: 2022/02/17 14:10:20 by rruiz-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,14 @@ typedef struct s_push_swap
 	int	len_a;
 	int	len_b;
 	int	b;
-	int	max;
-	int	min;
+	int	max_a;
+	int	min_a;
+	int	pos_min_a;
+	int	pos_max_a;
+	int	max_b;
+	int	min_b;
+	int	pos_min_b;
+	int	pos_max_b;
 }	t_push_swap;
 
 int		push_swap(char *argv[], t_push_swap *ps, int argc);

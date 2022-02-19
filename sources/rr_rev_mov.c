@@ -6,7 +6,7 @@
 /*   By: rruiz-la <rruiz-la@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 14:41:28 by rruiz-la          #+#    #+#             */
-/*   Updated: 2022/02/08 18:13:43 by rruiz-la         ###   ########.fr       */
+/*   Updated: 2022/02/15 23:14:51 by rruiz-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@ void	rrb_rev_b(t_push_swap *ps)
 	int	i;
 	int	aux;
 
-	i = ps->len_a - 1;
-	aux = ps->stack_b[ps->len_a - 1];
+	if (ps->len_b == 0)
+		return ;
+	i = ps->len_b - 1;
+	aux = ps->stack_b[ps->len_b - 1];
 	while (i > 0)
 	{
 		ps->stack_b[i] = ps->stack_b[i - 1];
