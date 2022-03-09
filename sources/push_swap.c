@@ -6,7 +6,7 @@
 /*   By: rruiz-la <rruiz-la@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 22:34:52 by rruiz-la          #+#    #+#             */
-/*   Updated: 2022/02/18 23:24:32 by rruiz-la         ###   ########.fr       */
+/*   Updated: 2022/03/08 21:05:50 by rruiz-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,48 @@ static int	push_min_to_a(t_push_swap *ps)
 	return (0);
 }
 
+static int sort_stack_b(t_push_swap *ps)
+{
+	int	min_to_botton;
+	int	max_to_botton;
+	int	j;
+
+	j = 0;
+	while (ps->len_b > 0)
+	{	
+		min_to_botton = 0;
+		max_to_botton = 0;
+		find_max_min_stack_b(ps);
+		min_to_botton = ps->len_b - ps->pos_min_b;
+		max_to_botton = ps->len_b - ps->pos_max_b;
+		if (ps->pos_min_b < ps->pos_max_b && ps->pos_min_b < min_to_botton && ps->pos_min_b < max_to_botton)
+			push_min_to_a(ps);
+		else if (min_to_botton < ps->pos_min_b && min_to_botton < ps->pos_max_b && min_to_botton < max_to_botton)
+			push_min_to_a(ps);
+		else if (ps->pos_max_b < ps->pos_min_b && ps->pos_max_b < min_to_botton && ps->pos_max_b < max_to_botton)
+		{
+			push_max_to_a(ps);
+			j++;
+		}
+		else if (max_to_botton < ps->pos_min_b && max_to_botton < ps->pos_max_b && max_to_botton < min_to_botton)
+		{
+			push_max_to_a(ps);
+			j++;
+		}
+		else
+			push_min_to_a(ps);
+	}
+	if (ps->len_b == 0)
+	{
+		while (j > 0)
+		{
+			ra_rotate_a(ps);
+			j--;
+		}
+	}
+	return (0);
+}
+
 static int *define_position_stack_a(t_push_swap *ps, int *pos)
 {
 	int i;
@@ -83,112 +125,134 @@ static int *define_position_stack_a(t_push_swap *ps, int *pos)
 	return (pos);
 }
 
-static int sort_stack_b(t_push_swap *ps)
-{
-	int j;
 
-	j = 0;
-	while (ps->len_b > 0)
-	{	
-		find_max_min_stack_b(ps);
-		if (push_max_to_a(ps) == 0)
-			j++;
-		push_min_to_a(ps);
-		if (ps->len_b == 0)
-		{
-			while (j > 0)
-			{
-				ra_rotate_a(ps);
-				j--;
-			}
-			
-		}
-		
-	}
-	return (0);
-}
 
 static void sort_stack_max_100(t_push_swap *ps)
 {
 	int	*pos;
 	int i;
-	int	r;
-
-	pos = malloc(sizeof(int *) * ps->top);
+	int	top_stack;
+	int first_bucket;
+	
+	pos = malloc(sizeof(int *) * ps->size);
 	define_position_stack_a(ps, pos);
 	i = -1;
 	while (++i < ps->len_a)
 		ps->stack_a[i] = pos[i];
-	i = 0;
-	r = 50;
-	while(1)
-	{
-		if (r == 50)
+
+
+	
+
+
+		while (ps->len_b < ps->size / 2)
 		{
-			while (i < ps->top / 2)
+			if (ps->stack_a[0] < ps->size / 2)
 			{
-				find_max_min_stack_a(ps);
-				if (ps->stack_a[0] > (ps->top / 2) - 1 && ps->stack_a[0] < ps->top)
-				{
-					pb_push_b(ps);
-					rb_rotate_b(ps);
-					i++;
-				}				
+				pb_push_b(ps);
+					
+			}
+			else
+			{
+				if (ps->stack_a[0] > ps->size / 2 && ps->stack_b[0] < ps->size / 4)
+					rr_ra_rb(ps);
 				else
-				{
-					if (ps->pos_max_a < ps->len_a / 2 || ps->pos_max_a - 1 < ps->len_a / 2)
-						ra_rotate_a(ps);
-					else
-						rra_rev_a(ps);
-				}
-				
+					ra_rotate_a(ps);
 			}
 		}
-		if (r == 100)
+
+
+
+
+
+
+
+
+		top_stack = ps->stack_a[0];
+		while (ps-> len_b > 31)
 		{
-			while (ps->len_a > 0)
-			{
-				find_max_min_stack_a(ps);
-				if (ps->stack_a[0] == ps->min_a)
-				{
-					pb_push_b(ps);
-				}				
-				else
-				{
-					if (ps->pos_min_a < ps->len_a / 2)
-					{
-						ra_rotate_a(ps);
-					}
-					else
-						rra_rev_a(ps);
-				}
-			}
-			while (i > 0)
+			if (ps->stack_b[0] > 30)
 			{
 				pa_push_a(ps);
-				i--;
 			}
+			else
+				rb_rotate_b(ps);
 		}
-		if (r == 100)
-		{
+		if (ps->len_b <= 31)
 			sort_stack_b(ps);
-			break ;
+		if (ps->len_b == 0)
+			first_bucket = ps->stack_a[ps->len_a - 1];
+		while (ps->stack_a[0] != top_stack)
+		{
+			if (ps->stack_a[0] == first_bucket + 1)
+				ra_rotate_a(ps);
+			else
+				pb_push_b(ps);
 		}
-		r = r + 50;
+		if (ps->len_b <=31)
+			sort_stack_b(ps);
+		else
+		{
+			if (ps->stack_a[0] > ps->size / 2 && ps->stack_b[0] < ps->size / 4)
+				rr_ra_rb(ps);
+			else
+				ra_rotate_a(ps);
+		}
 
-	}
+
+
+
+
+
+		i = ps->stack_a[ps->len_a - 1];
+		while (ps->stack_a[0] != 0)
+		{
+			if (ps->stack_a[0] == i + 1)
+			{
+				ra_rotate_a(ps);
+				i++;
+			}
+			else
+				pb_push_b(ps);
+		}
+		find_max_min_stack_b(ps);
+		while (ps->max_b > 75)
+		{
+			if(ps->stack_b[0] == i + 1)
+			{
+				pa_push_a(ps);
+				ra_rotate_a(ps);
+				i++;
+			}
+			else if (ps->stack_b[0] > 75)
+			{
+				pa_push_a(ps);
+			}
+			else
+				rb_rotate_b(ps);
+			find_max_min_stack_b(ps);
+		}
+		sort_stack_b(ps);
+		while (ps->stack_a[0] != 0)
+		{
+			if (ps->stack_a[0] == i + 1)
+				ra_rotate_a(ps);
+			else
+				pb_push_b(ps);
+		}
+		sort_stack_b(ps);
 	free (pos);
+	free_push_swap(ps);
 }
 
 static int	init_game(t_push_swap *ps)
 {
 	if (is_stack_sorted(ps) == 0)
 	{
-		if (ps->top < 3)
+		if (ps->size < 3)
 			sa_swap_a(ps);
-		else if (ps->top < 4)
+		else if (ps->size < 4)
 			sort_stack_min_3(ps);
-		else if (ps->top > 3 && ps->top < 6)
+		else if (ps->size > 3 && ps->size < 6)
 			sort_stack_min_5(ps);
 		else 
 			sort_stack_max_100(ps);
@@ -202,14 +266,14 @@ int	push_swap(char *argv[], t_push_swap *ps, int argc)
 	{
 		if (check_rep_num_argv(argv, argc, ps) == 1)
 		{
-			ft_putstr_fd("Error\nsome arguments are duplicated", 1);
+			ft_putstr_fd("Error\n", 1);
 			return (1);
 		}
 		init_game(ps);
 	}
 	else
 	{
-		ft_putstr_fd("Error\nsome arguments aren't integers", 1);
+		ft_putstr_fd("Error\n", 1);
 		return (1);
 	}
 	return (0);
@@ -222,7 +286,6 @@ int	main(int argc, char *argv[])
 	if (argc > 1)
 	{
 		push_swap(argv, &ps, argc);
-		free_push_swap(&ps);
 	}	
 	else
 		return (1);

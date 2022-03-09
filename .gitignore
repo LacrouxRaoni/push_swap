@@ -2,5 +2,7 @@ push_swap
 *.o
 objects/
 push_swap_visualizer/
+push_swap_tester/
+log_error/
 .vscode/
 pyviz.py

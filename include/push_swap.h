@@ -6,7 +6,7 @@
 /*   By: rruiz-la <rruiz-la@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 22:34:56 by rruiz-la          #+#    #+#             */
-/*   Updated: 2022/02/17 14:10:20 by rruiz-la         ###   ########.fr       */
+/*   Updated: 2022/03/02 11:37:01 by rruiz-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_push_swap
 {
 	int	*stack_a;
 	int	*stack_b;
-	int	top;
+	int	size;
 	int	len_a;
 	int	len_b;
 	int	b;
