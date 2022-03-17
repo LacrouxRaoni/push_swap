@@ -6,7 +6,7 @@
 /*   By: rruiz-la <rruiz-la@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 14:47:45 by rruiz-la          #+#    #+#             */
-/*   Updated: 2022/02/20 15:14:18 by rruiz-la         ###   ########.fr       */
+/*   Updated: 2022/03/12 13:59:30 by rruiz-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	pa_push_a(t_push_swap *ps)
 {
 	int	i;
 
-	i = ps->top - 1;
-	if (ps->len_b == 0 || ps->len_a == ps->top)
+	i = ps->size - 1;
+	if (ps->len_b == 0 || ps->len_a == ps->size)
 		return ;
 	while (i > 0)
 	{
@@ -41,8 +41,8 @@ void	pb_push_b(t_push_swap *ps)
 {
 	int	i;
 
-	i = ps->top - 1;
-	if (ps->len_a == 0 || ps->len_b == ps->top)
+	i = ps->size - 1;
+	if (ps->len_a == 0 || ps->len_b == ps->size)
 		return ;
 	while (i > 0)
 	{
@@ -51,7 +51,7 @@ void	pb_push_b(t_push_swap *ps)
 	}
 	ps->stack_b[0] = ps->stack_a[0];
 	i = 0;
-	while (i < ps->top - 1)
+	while (i < ps->size - 1)
 	{
 		ps->stack_a[i] = ps->stack_a[i + 1];
 		i++;

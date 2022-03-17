@@ -6,7 +6,7 @@
 /*   By: rruiz-la <rruiz-la@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 22:34:56 by rruiz-la          #+#    #+#             */
-/*   Updated: 2022/03/02 11:37:01 by rruiz-la         ###   ########.fr       */
+/*   Updated: 2022/03/17 15:06:46 by rruiz-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,25 +37,29 @@ typedef struct s_push_swap
 	int	pos_max_b;
 }	t_push_swap;
 
-int		push_swap(char *argv[], t_push_swap *ps, int argc);
-int		check_num_argv(char **argv);
-int		check_rep_num_argv(char **argv, int argc, t_push_swap *ps);
-void	sa_swap_a(t_push_swap *ps);
-void	sb_swap_b(t_push_swap *ps);
-void	ss_sa_n_sb(t_push_swap *ps);
-void	pa_push_a(t_push_swap *ps);
-void	pb_push_b(t_push_swap *ps);
-void	ra_rotate_a(t_push_swap *ps);
-void	rb_rotate_b(t_push_swap *ps);
-void	rr_ra_rb(t_push_swap *ps);
-void	rra_rev_a(t_push_swap *ps);
-void	rrb_rev_b(t_push_swap *ps);
-void	rrr_a_b(t_push_swap *ps);
-int		is_stack_sorted(t_push_swap *ps);
-void	find_max_min_stack_a(t_push_swap *ps);
-void	find_max_min_stack_b(t_push_swap *ps);
-void	sort_stack_min_3(t_push_swap *ps);
-void	sort_stack_min_5(t_push_swap *ps);
-void	free_push_swap(t_push_swap *ps);
+int				push_swap(char *argv[], t_push_swap *ps, int argc);
+int				check_num_argv(char **argv);
+int				check_rep_num_argv(char **argv, int argc, t_push_swap *ps);
+void			sa_swap_a(t_push_swap *ps);
+void			sb_swap_b(t_push_swap *ps);
+void			ss_sa_n_sb(t_push_swap *ps);
+void			pa_push_a(t_push_swap *ps);
+void			pb_push_b(t_push_swap *ps);
+void			ra_rotate_a(t_push_swap *ps);
+void			rb_rotate_b(t_push_swap *ps);
+void			rr_ra_rb(t_push_swap *ps);
+void			rra_rev_a(t_push_swap *ps);
+void			rrb_rev_b(t_push_swap *ps);
+void			rrr_a_b(t_push_swap *ps);
+int				is_stack_sorted(t_push_swap *ps);
+void			find_max_min_stack_a(t_push_swap *ps);
+void			find_max_min_stack_b(t_push_swap *ps);
+void			sort_stack_min_3(t_push_swap *ps);
+void			sort_stack_min_5(t_push_swap *ps);
+void			sort_stack_max_500(t_push_swap *ps);
+int				*define_position_stack_a(t_push_swap *ps, int *pos);
+int				sort_stack_b(t_push_swap *ps);
+void			free_push_swap(t_push_swap *ps);
+long long int	long_atoi(const char *nptr);
 
 #endif
