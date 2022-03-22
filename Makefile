@@ -9,9 +9,9 @@ I_OBJ	=	-I ./ -I ./librarie/libft/
 LINKS	=	-I ./ -I ./librarie/libft/ -L ./librarie/libft/ -lft
 
 CC	=	gcc
-#CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror
 
-SRC_DIR	=		sources
+SRC_DIR		=	sources
 SRC_FILES	=	push_swap.c \
 				argv_setup.c \
 				swap_move.c \
@@ -61,6 +61,6 @@ re: fclean all
 
 valgrind:	$(NAME)
 		make
-		valgrind --leak-check=full --show-leak-kinds=all ./push_swap 1 -1 0 3 2 
+		valgrind --leak-check=full --show-leak-kinds=all ./push_swap 3 2 1 4 5
 		
 .PHONY:	all clean fclean re

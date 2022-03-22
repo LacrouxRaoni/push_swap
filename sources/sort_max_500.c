@@ -6,7 +6,7 @@
 /*   By: rruiz-la <rruiz-la@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 14:55:02 by rruiz-la          #+#    #+#             */
-/*   Updated: 2022/03/15 16:35:58 by rruiz-la         ###   ########.fr       */
+/*   Updated: 2022/03/22 18:33:57 by rruiz-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ static void	sort_rest_num(t_push_swap *ps, int cut_point_one)
 
 void	sort_stack_max_500(t_push_swap *ps)
 {
-	int	i;
 	int	cut_point_one;
 	int	cut_half;
 

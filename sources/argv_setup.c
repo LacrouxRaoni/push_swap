@@ -6,7 +6,7 @@
 /*   By: rruiz-la <rruiz-la@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 13:40:25 by rruiz-la          #+#    #+#             */
-/*   Updated: 2022/03/17 15:45:03 by rruiz-la         ###   ########.fr       */
+/*   Updated: 2022/03/22 18:33:17 by rruiz-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	malloc_stack(t_push_swap *ps, int len)
 		exit(1);
 }
 
-static int	init_var(t_push_swap *ps, int len)
+static void	init_var(t_push_swap *ps, int len)
 {
 	ps->size = len - 1;
 	ps->len_a = len - 1;
