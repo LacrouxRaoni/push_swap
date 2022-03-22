@@ -6,7 +6,7 @@
 /*   By: rruiz-la <rruiz-la@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:43:42 by rruiz-la          #+#    #+#             */
-/*   Updated: 2022/03/17 14:44:47 by rruiz-la         ###   ########.fr       */
+/*   Updated: 2022/03/22 11:55:03 by rruiz-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ static int	ft_isspace(char c)
 
 long long int	long_atoi(const char *nptr)
 {
-	int	str;
-	int	negative;
+	long long int	str;
+	int				negative;
 
 	negative = 0;
 	str = 0;
