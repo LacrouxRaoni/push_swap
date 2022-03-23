@@ -61,6 +61,6 @@ re: fclean all
 
 valgrind:	$(NAME)
 		make
-		valgrind --leak-check=full --show-leak-kinds=all ./push_swap 3 2 1 4 5
+		valgrind --leak-check=full --show-leak-kinds=all ./push_swap 4 2 a
 		
 .PHONY:	all clean fclean re
