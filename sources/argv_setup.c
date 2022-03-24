@@ -6,7 +6,7 @@
 /*   By: rruiz-la <rruiz-la@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 13:40:25 by rruiz-la          #+#    #+#             */
-/*   Updated: 2022/03/22 18:33:17 by rruiz-la         ###   ########.fr       */
+/*   Updated: 2022/03/24 11:30:03 by rruiz-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,16 @@ static void	init_var(t_push_swap *ps, int len)
 	ps->size = len - 1;
 	ps->len_a = len - 1;
 	ps->len_b = 0;
+	ps->min_a = 0;
+	ps->min_b = 0;
+	ps->max_a = 0;
+	ps->max_b = 0;
 	ps->pos_min_b = 0;
 	ps->pos_max_b = 0;
 	ps->pos_min_a = 0;
 	ps->pos_max_a = 0;
 	ps->b = 0;
+	ps->stack_b[0] = 0;
 }
 
 static int	check_rep_num(t_push_swap *ps, int len_argv)
@@ -65,7 +70,7 @@ int	check_rep_num_argv(char **argv, int len_argv, t_push_swap *ps)
 	j = -1;
 	while (argv[++i] != NULL)
 	{
-		if (long_atoi(argv[i]) <= INT_MIN || long_atoi(argv[i]) >= INT_MAX)
+		if (long_atoi(argv[i]) < INT_MIN || long_atoi(argv[i]) > INT_MAX)
 			return (1);
 		else
 			ps->stack_a[++j] = long_atoi(argv[i]);
